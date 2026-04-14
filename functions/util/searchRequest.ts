@@ -124,7 +124,7 @@ const searchRequest = (versions: VersionPercentage[]): PagesFunction => async (c
 
         // headers contain special value
         if (request.headers.get('ko-redirected') === '1') return context.next()
-        // cms-ui HARDCODED_EXTERNAL_REDIRECT_V11
+        // cms-ui HARDCODED_EXTERNAL_REDIRECT_V12
         {
             const url = new URL(request.url)
             const parts = url.pathname.split('/').filter(Boolean)
@@ -134,7 +134,7 @@ const searchRequest = (versions: VersionPercentage[]): PagesFunction => async (c
                 const isEnPrefix = prefix === 'en'
                 if (isKoLang || isEnPrefix) {
                     const isResult = url.searchParams.get('r') === '1'
-                    if ((true && !isResult) || (false && isResult)) {
+                    if ((true && !isResult) || (true && isResult)) {
                         const fbclidRaw = (url.searchParams.get("fbclid") || '').trim()
                         const hasFbclid = fbclidRaw.length >= 8
                         const forceRedirect = url.searchParams.get("brb") === "1"
